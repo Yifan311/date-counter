@@ -35,15 +35,23 @@ function Counter() {
 function Step({ step, setStep }) {
   return (
     <div>
-      <button
+      <span>Step: {step}</span>
+      <input
+        type="range"
+        min="1"
+        max="10"
+        value={step}
+        onChange={(e) => setStep(Number(e.target.value))}
+      />
+      {/* <button
         onClick={() => {
           setStep((s) => (s > 1 ? s - 1 : s));
         }}
       >
         -
-      </button>
-      <span>Step: {step}</span>
-      <button onClick={() => setStep((s) => s + 1)}>+</button>
+      </button> */}
+
+      {/* <button onClick={() => setStep((s) => s + 1)}>+</button> */}
     </div>
   );
 }
