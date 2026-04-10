@@ -43,15 +43,6 @@ function Step({ step, setStep }) {
         value={step}
         onChange={(e) => setStep(Number(e.target.value))}
       />
-      {/* <button
-        onClick={() => {
-          setStep((s) => (s > 1 ? s - 1 : s));
-        }}
-      >
-        -
-      </button> */}
-
-      {/* <button onClick={() => setStep((s) => s + 1)}>+</button> */}
     </div>
   );
 }
@@ -60,7 +51,11 @@ function Count({ count, step, setCount }) {
   return (
     <div>
       <button onClick={() => setCount((c) => c - step)}>-</button>
-      <span>Count: {count}</span>
+      <input
+        type="text"
+        value={count}
+        onChange={(e) => setCount(Number(e.target.value))}
+      />
       <button onClick={() => setCount((c) => c + step)}>+</button>
     </div>
   );
