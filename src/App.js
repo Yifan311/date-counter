@@ -28,6 +28,14 @@ function Counter() {
       <Step step={step} setStep={setStep} />
       <Count count={count} step={step} setCount={setCount} />
       <DateDisplay dayLabel={dayLabel} targetDate={targetDate} count={count} />
+      <button
+        onClick={() => {
+          setCount(0);
+          setStep(1);
+        }}
+      >
+        Reset
+      </button>
     </>
   );
 }
@@ -43,15 +51,6 @@ function Step({ step, setStep }) {
         value={step}
         onChange={(e) => setStep(Number(e.target.value))}
       />
-      {/* <button
-        onClick={() => {
-          setStep((s) => (s > 1 ? s - 1 : s));
-        }}
-      >
-        -
-      </button> */}
-
-      {/* <button onClick={() => setStep((s) => s + 1)}>+</button> */}
     </div>
   );
 }
@@ -60,7 +59,11 @@ function Count({ count, step, setCount }) {
   return (
     <div>
       <button onClick={() => setCount((c) => c - step)}>-</button>
-      <span>Count: {count}</span>
+      <input
+        type="text"
+        value={count}
+        onChange={(e) => setCount(Number(e.target.value))}
+      />
       <button onClick={() => setCount((c) => c + step)}>+</button>
     </div>
   );
