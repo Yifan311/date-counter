@@ -28,14 +28,18 @@ function Counter() {
       <Step step={step} setStep={setStep} />
       <Count count={count} step={step} setCount={setCount} />
       <DateDisplay dayLabel={dayLabel} targetDate={targetDate} count={count} />
-      <button
-        onClick={() => {
-          setCount(0);
-          setStep(1);
-        }}
-      >
-        Reset
-      </button>
+      {count !== 0 || step !== 1 ? (
+        <button
+          onClick={() => {
+            setCount(0);
+            setStep(1);
+          }}
+        >
+          Reset
+        </button>
+      ) : (
+        ""
+      )}
     </>
   );
 }
