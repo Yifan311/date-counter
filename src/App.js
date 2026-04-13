@@ -27,15 +27,14 @@ function Counter() {
     <>
       <Step step={step} setStep={setStep} />
       <Count count={count} step={step} setCount={setCount} />
-      <DateDisplay dayLabel={dayLabel} targetDate={targetDate} count={count} />
-      <button
-        onClick={() => {
-          setCount(0);
-          setStep(1);
-        }}
-      >
-        Reset
-      </button>
+      <DateDisplay
+        dayLabel={dayLabel}
+        targetDate={targetDate}
+        count={count}
+        step={step}
+        setStep={setStep}
+        setCount={setCount}
+      />
     </>
   );
 }
@@ -69,7 +68,7 @@ function Count({ count, step, setCount }) {
   );
 }
 
-function DateDisplay({ count, targetDate, dayLabel }) {
+function DateDisplay({ count, targetDate, dayLabel, step, setStep, setCount }) {
   let message;
   if (count === 0) {
     message = "Today is ";
@@ -77,6 +76,10 @@ function DateDisplay({ count, targetDate, dayLabel }) {
     message = `${Math.abs(count)} ${dayLabel} from today is `;
   } else {
     message = `${Math.abs(count)} ${dayLabel} ago was `;
+  }
+  function handleReset() {
+    setCount(0);
+    setStep(1);
   }
   return (
     <div>
@@ -89,6 +92,11 @@ function DateDisplay({ count, targetDate, dayLabel }) {
           day: "numeric",
         })}
       </p>
+      {count !== 0 || step !== 1 ? (
+        <button onClick={handleReset}>Reset</button>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
